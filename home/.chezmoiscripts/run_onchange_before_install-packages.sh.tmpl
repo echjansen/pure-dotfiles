@@ -1,0 +1,21 @@
+{{ if eq .chezmoi.os "linux" -}}
+
+{{   $packages := list
+       "git"
+       "make"
+       "chezmoi"
+       "ranger" -}}
+
+{{   $sudo := "sudo " -}}
+{{   if eq .chezmoi.username "root" -}}
+{{     $sudo = "" -}}
+{{   end -}}
+
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $sudo }}pacman -Syu
+{{ $sudo }}pacman -S --needed {{ $packages | join " " }}
+
+{{ end -}}
