@@ -15,6 +15,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 # Exports
+export $(envsubst < .env)
 export EDITOR=mg
 export VISUAL=$EDITOR
 
