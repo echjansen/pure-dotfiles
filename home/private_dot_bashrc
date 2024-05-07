@@ -13,10 +13,9 @@ PS1='[\u@\h \W]\$ '
 # Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias dots=chezmoi
 
 # Exports
 export $(envsubst < .env)
-export EDITOR=mg
+export EDITOR='emacs -nw'
 export VISUAL=$EDITOR
-
-
