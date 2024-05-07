@@ -18,6 +18,8 @@
        "qt5-wayland"
        "qt6-wayland"
        "polkit-kde-agent"
+       "pipewire"
+       "wireplumber"
        "cliphist"
        "foot"
        "emacs-wayland" -}}
@@ -32,7 +34,7 @@
 set -eufo pipefail
 
 {{ $sudo }}pacman -Syu
-{{ $sudo }}pacman -S --needed {{ $packages | join " " }}
-{{ $sudo }}pacman -S --needed {{ $desktop | join " " }}
+{{ $sudo }}pacman -S --noconfirm --needed {{ $packages | join " " }}
+{{ $sudo }}pacman -S --noconfirm --needed {{ $desktop | join " " }}
 
 {{ end -}}
