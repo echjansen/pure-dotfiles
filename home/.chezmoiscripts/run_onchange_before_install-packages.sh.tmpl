@@ -2,9 +2,21 @@
 
 {{   $packages := list
        "git"
+       "gitui"
        "make"
        "chezmoi"
        "ranger" -}}
+
+{{   $desktop := list
+       "hyprland"
+       "hyprpaper"
+       "hyprlang"
+       "hypridle"
+       "hyprlock"
+       "hyprcursor"
+       "xdg-desktop-portal-hyprland" 
+       "foot"
+       "emacs-wayland" -}}
 
 {{   $sudo := "sudo " -}}
 {{   if eq .chezmoi.username "root" -}}
@@ -17,5 +29,6 @@ set -eufo pipefail
 
 {{ $sudo }}pacman -Syu
 {{ $sudo }}pacman -S --needed {{ $packages | join " " }}
+{{ $sudo }}pacman -S --needed {{ $desktop | join " " }}
 
 {{ end -}}
