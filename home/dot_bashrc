@@ -1,0 +1,21 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+PS1='[\u@\h \W]\$ '
+
+# Fonts
+# setfont ter-v22b
+
+# Aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Exports
+export EDITOR=mg
+export VISUAL=$EDITOR
+
+
