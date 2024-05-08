@@ -16,6 +16,6 @@ alias grep='grep --color=auto'
 alias dots=chezmoi
 
 # Exports
-export $(envsubst < .env)
+# export $(envsubst < .env)
 export EDITOR='emacs -nw'
 export VISUAL=$EDITOR
