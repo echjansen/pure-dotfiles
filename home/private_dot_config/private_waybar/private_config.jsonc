@@ -1,15 +1,15 @@
 {
 "layer": "top",
-//"mode": "dock",
+"mode": "dock",
 "exclusive": true,
 "passthrough": false,
 "position": "top",
-"spacing": 3,
+"spacing": 1,
 "fixed-center": true,
 "ipc": true,
-"margin-top": 3,
-"margin-left": 8,
-"margin-right": 8,
+"margin-top": 0,
+"margin-left": 0,
+"margin-right": 0,
 
 "modules-left": [
         "custom/menu",
@@ -28,7 +28,7 @@
         "custom/separator#dot-line",
         "clock",
         "custom/separator#line",
-        "hyprland/workspaces#roman",
+        "hyprland/workspaces#apps",
         "custom/separator#line",
         "idle_inhibitor",
         "custom/hint",
@@ -50,7 +50,7 @@
 
 // CIRCLES Style
 "hyprland/workspaces": {
-        "active-only": false,
+    "active-only": false,
     "all-outputs": true,
     "format": "{icon}",
     "show-special": false,
@@ -67,7 +67,7 @@
     "format-icons": {
       "active": "",
       "default": "",
-        },
+    },
 },
 
 // ROMAN Numerals style
@@ -151,7 +151,7 @@
 },
 
 //  NUMBERS and ICONS style
-"hyprland/workspaces#4": {
+"hyprland/workspaces#apps": {
     "format": "{name}",
     "format": " {name} {icon} ",
     //"format": " {icon} ",
@@ -545,7 +545,7 @@
 },
 
 "custom/menu": {
-    "format": "{}",
+    "format": "󰣇{}",  // 󰣇, 
     "exec": "echo ; echo 󱓟 app launcher",
     "interval" : 86400, // once every day
     "tooltip": true,
@@ -666,12 +666,12 @@
 // Modules below are for vertical layout
 
 "backlight#vertical": {
-        "interval": 2,
+    "interval": 2,
     "align": 0.35,
     "rotate": 1,
     "format": "{icon}",
     //"format-icons": ["󰃞", "󰃟", "󰃠"],
-        "format-icons": ["","","","","","","","","","","","","","",""],
+    "format-icons": ["","","","","","","","","","","","","","",""],
     "on-click": "",
     "on-click-middle": "",
     "on-click-right": "",
@@ -679,12 +679,12 @@
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     "smooth-scrolling-threshold": 1,
-        "tooltip-format": "{percent}%",
+    "tooltip-format": "{percent}%",
 },
 
 "clock#vertical": {
-        "format": "\n{:%H\n%M\n%S\n\n \n%d\n%m\n%y}",
-        "interval": 1,
+     "format": "\n{:%H\n%M\n%S\n\n \n%d\n%m\n%y}",
+     "interval": 1,
      //"format": "\n{:%I\n%M\n%p\n\n \n%d\n%m\n%y}",
      "tooltip": true,
      "tooltip-format": "{calendar}",
@@ -692,7 +692,7 @@
        "mode": "year",
        "mode-mon-col": 3,
        "format": {
-       "today": "<span color='#0dbc79'>{}</span>",
+         "today": "<span color='#0dbc79'>{}</span>",
        }
      }
 },
@@ -765,7 +765,7 @@
 "custom/power_vertical": {
     "format": "⏻",
     "exec": "echo ; echo 󰟡 power // blur",
-        "on-click": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click": "~/.config/hypr/scripts/Wlogout.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
     "interval" : 86400, // once every day
     "tooltip": true,
