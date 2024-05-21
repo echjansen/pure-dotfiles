@@ -17,7 +17,8 @@ alias dots=chezmoi
 alias mg='mg -n'                     # micro emacs without littering
 
 # Exports
-# export $(envsubst < .env)
+export PATH=~/.local/bin:$PATH
+export GNUPGHOME=$HOME/.gnupg/onlykey
 export EDITOR='emacs -nw'
 export VISUAL=$EDITOR
 
