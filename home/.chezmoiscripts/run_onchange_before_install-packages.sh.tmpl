@@ -19,8 +19,7 @@
        "hypridle"
        "hyprlock"
        "hyprcursor"
-       "nwg-panel"
-       "nwg-look"
+       "nwg-shell"
        "swaync"
        "ttf-jetbrains-mono-nerd"
        "xdg-desktop-portal-hyprland"
@@ -43,9 +42,9 @@
 
 set -eufo pipefail
 
-{{ $sudo }}pacman -Syu
-{{ $sudo }}pacman -S --noconfirm --needed {{ $pkgs_system   | join " " }}
-{{ $sudo }}pacman -S --noconfirm --needed {{ $pkgs_standard | join " " }}
-{{ $sudo }}pacman -S --noconfirm --needed {{ $pkgs_hyprland | join " " }}
+yay -Syu
+yay -S --noconfirm --needed {{ $pkgs_system   | join " " }}
+yay -S --noconfirm --needed {{ $pkgs_standard | join " " }}
+yay -S --noconfirm --needed {{ $pkgs_hyprland | join " " }}
 
 {{ end -}}
