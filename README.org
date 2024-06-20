@@ -1,2 +1,43 @@
 # pure_dotfiles
 = P U R E - D O T F I L E S =
+
+This is my dotfiles repository for (mainly) arch Linux.
+
+** Stow dotfile manager
+
+Installation:
+#+begin_src shell
+  pacman -S stow
+#+end_src
+
+Usage:
+#+begin_src shell
+  cd ~/pure-dotfiles/
+  stow */                         # Stow all packages
+  stow emacs                      # Stow the emacs configuration (only)
+#+end_src
+
+Method:
+In order to use ~stow~ correctly, the following guidelines need to be observed:
+1. The repository must be installed in the root folder, ~/pure-dotfiles.
+2. Packages must be configured in a ~subdirectory~, ~/pure-dotfiles/package1~
+3. Each package subdirecty is a virtual ~root~directory that will be symlinked:
+   ~/pure-dotfiles/package1/.config/package1/package1.rc~ --> ~/.config/package1/package1.rc~
+4. A ~/pure-dotfiles/.stow-local-ignore file contains files and folders that will be ignored by stow */ command
+5. Never run ~stow .~ as the ~pure-dotfiles~ uses ~packages~ folders
+
+** Chezmoi dotfile manager
+
+Installation:
+#+begin_src shell
+  pacman -S chezmoi
+#+end_src
+
+I have tried a couple of times to use the chezmoi tool for managing dotfiles, but have found it complex and slightly irritation to use.
+The main reasons:
+
+- The repositiory lives in the users ~/.local/share/chezmoi~ directory.
+- The user needs to visit this folder to manage the repository ~chezmoi cd~.
+- The user has the ~chezmoi diff~ and ~chezmoi status~ commands to validate what has been changed.
+- Although very configurable, the scripting language is messy at best ~{{ if   something  - }}~
+- Bottom line - most of the complexity it tries to solve - can be achieved with ~stow~ as long as there is a ~plan~ on the structure
