@@ -10,10 +10,21 @@ Installation:
   pacman -S stow
 #+end_src
 
+Preparation:
+#+begin_src shell
+  # Allow the repository to be located anywhere
+  # -vv        : verbose with more detail (can also be -vvv)
+  # -R         : revert earlier stows
+  # -d         : full path tho the dotfiles repository
+  # -t         : full path to the target
+  # --ignore   : ignore any file / folder regardless where located
+  alias stow='stow -vv -R -d ~/Projects/pure-dotfiles/ -t ~/ --ignore=.install.sh'
+#+end_src
+
 Usage:
 #+begin_src shell
   cd ~/pure-dotfiles/
-  stow */                         # Stow all packages
+  stow */                         # Stow all packages (must be run from within the repository)
   stow emacs                      # Stow the emacs configuration (only)
 #+end_src
 
