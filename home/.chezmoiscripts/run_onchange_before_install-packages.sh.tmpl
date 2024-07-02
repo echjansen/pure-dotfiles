@@ -1,15 +1,24 @@
 {{ if eq .chezmoi.os "linux" -}}
 
-{{   $pkgs_system := list
-       "interception-caps2esc" -}}
-
 {{   $pkgs_standard := list
        "git"
        "gitui"
+       "fish"
        "make"
        "chezmoi"
+       "wireplumber"
+       "pipewire"
+       "foot"
+       "firefox"
+       "arkenfox-user.js"
        "ranger"
-       "xplr" -}}
+       "xplr"
+       "btop" -}}
+
+{{   $pkgs_emacs := list
+       "emacs-wayland"
+       "hunspell"
+       "hunspell-en_us" -}}
 
 {{   $pkgs_hyprland := list
        "hyprland"
@@ -25,11 +34,8 @@
        "qt5-wayland"
        "qt6-wayland"
        "polkit-kde-agent"
-       "pipewire"
-       "wireplumber"
        "cliphist"
        "brightnessctl"
-       "foot"
        "mullvad-browser-bin"
        "emacs-wayland" -}}
 
@@ -43,8 +49,7 @@
 set -eufo pipefail
 
 yay -Syu
-yay -S --noconfirm --needed {{ $pkgs_system   | join " " }}
 yay -S --noconfirm --needed {{ $pkgs_standard | join " " }}
-yay -S --noconfirm --needed {{ $pkgs_hyprland | join " " }}
+yay -S --noconfirm --needed {{ $pkgs_emacs | join " " }}
 
 {{ end -}}
