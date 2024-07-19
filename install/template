@@ -1,0 +1,11 @@
+# Install package list from archlinux
+[pacman]
+
+# Install package list from aur
+[aur]
+
+# Services to be enabled and started
+[service]
+
+# Bash commmands to be executed
+[script]

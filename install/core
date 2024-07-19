@@ -1,0 +1,20 @@
+# Install package list from archlinux
+[pacman]
+editor = emacs-wayland
+terminal = foot
+security = gnupg openssh yubikey-manager
+versioning = git gitui
+filemanager = ranger
+utils = btop htop
+
+# Install package list from aur
+[aur]
+
+# Services to be enabled and started
+[service]
+network = NetworkManager
+
+# Bash commmands to be executed
+[script]
+# Create mail directory (mbsync)
+create maildir user1 = mkdir -p ~/.mail/user1

@@ -1,0 +1,122 @@
+# pure_dotfiles
+* = P U R E - D O T F I L E S =
+
+This project is solution for rising systems, or maintain ~dotfile~ configuration.
+
+** key features
+
+The key features of the project include:
+
+  - Dotfiles are managed with Gnus ~stow~
+  - A script ~INI~ file that takes care of:
+     - Installation of ~pacman~ packages
+     - Installation of ~AUR~ packages
+     - Enabling and starting of ~systemctl~ services
+     - Executing of ~bash~ commands
+  - A log file is created for each run of the ~install~ script
+
+Note that by maintaining multiple ~INI~ files selective or partial installation if larger features, such as desktops, Emacs environment, etc becomes possible.
+
+** Installation of pure-dotfiles
+
+Installation:
+#+begin_src shell
+  # Install the minimum requirements
+  pacman -S stow
+  # Clone your dotfiles
+  git clone https://github.com/echjansen/pure-dotfiles ~/dotfiles
+  ,* Install packages, services, scripts, etc
+  python install.py install/core
+#+end_src
+
+Stow works on the principle that it ~stows~ all packages in the parent folder of the ~dotfile~ folder.
+In case the ~dotfile~ folder is located in a sub folder stow, can be informed about the ~dotfile~ folder with the ~-d~ option.
+
+Use an alias for ~stow~ when the ~dotfile~ folder is located in a sub directory:
+#+begin_src shell
+    # Allow the repository to be located anywhere
+    # -vv        : verbose with more detail (can also be -vvv)
+    # -R         : revert earlier stows
+    # -d         : full path tho the dotfiles repository
+    # -t         : full path to the target
+    # --ignore   : ignore any file / folder regardless where located
+    alias stow='stow -vv -R -d ~/Projects/pure-dotfiles/ -t ~/ --ignore=.install.sh'
+#+end_src
+
+Usage examples:
+#+begin_src shell
+  stow */                         # Stow all packages
+  stow emacs                      # Stow the emacs configuration (only)
+  python install.py init-file     # Install packages, services and run final commands
+#+end_src
+
+** User configuration
+
+The user configuration files are classical ~INI~ files.
+- They provide sections identified by ~[...]~ brackets. Each section has a pre-defined behaviour (but could be extended easily):
+   1. [pacman]   - Installation of packages using the pacman tool (Arch Linux)
+   2. [aur]      - Installation of packages using the ~yay~ tool
+   3. [service]  - Enables and starts ~systemctl~ services
+   4. [script]   - Executes ~bash~ commands lines
+
+An example of the installation script file ~INI~
+
+#+begin_src shell
+  [pacman]
+  editor = emacs-wayland
+  terminal = foot
+  security = gnupg openssh yubikey-manager
+  versioning = git gitui
+  filemanager = ranger
+  utils = btop htop
+
+  # Install package list from aur
+  [aur]
+
+  # Services to be enabled and started
+  [service]
+  network = NetworkManager
+
+  # Bash commmands to be executed
+  [script]
+  # Create mail directory (mbsync)
+  create maildir user1 = mkdir -p ~/.mail/user1
+  # Stow packages
+  Configure all = stow */
+  Configure bash = stow bash
+  Configure emacs = stow emacs
+#+end_src
+
+An example of the output of running the installation script:
+
+#+begin_comment
+    >> [ DONE ] Checking if AUR helper exists.
+    >> [ DONE ] Refreshing pacman database cache.
+    >> [ INFO ] Installing archlinux package(s):.
+    >> [ DONE ] Installing ['editor']: emacs
+    >> [ DONE ] Installing ['terminal']: foot
+    >> [ DONE ] Installing ['email']: isync msmtp
+    >> [ DONE ] Installing ['security']: gnupg openssh yubikey-manager
+    >> [ DONE ] Installing ['versioning']: git
+    >> [ DONE ] Installing ['filemanager']: ranger
+    >> [ DONE ] Installing ['utils']: htop
+    >> [ INFO ] Installing AUR package(s):.
+    >> [ DONE ] Installing ['email']: mu
+    >> [ INFO ] Enabling and Starting service(s):.
+    >> [ DONE ] Enabling network: NetworkManager
+    >> [ DONE ] Starting network: NetworkManager
+    >> [ INFO ] Executing bash script(s):.
+    >> [ DONE ] Executing mkdir -p ~/.mail/franz
+    >> [ DONE ] Executing mkdir -p ~/.mail/jansen
+    >> [ DONE ] Executing mkdir -p ~/.mail/web
+    >> [ DONE ] Executing mbsync -a
+    >> [ DONE ] Executing mu init --maildir=~/.mail '--my-address=user@email.com'
+    >> [ DONE ] Executing mu index
+    >> [ INFO ] Check ~/tmp/install.log~ for full installation output.
+#+end_comment
+
+An example when there is no internet connection.
+#+begin_comment
+    >> [ DONE ] Checking if AUR helper exists.
+    >> [ FAIL ] Refreshing pacman database cache.
+#+end_comment

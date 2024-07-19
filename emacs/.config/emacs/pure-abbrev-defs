@@ -1,0 +1,8 @@
+;;-*-coding: utf-8;-*-
+(define-abbrev-table 'org-mode-abbrev-table
+  '(
+    ("checkk" "check" nil :count 0)
+    ("misitkaes" "mistakes" nil :count 0)
+    ("paramaters" "parameters" nil :count 0)
+    ("personalised" "personalized" nil :count 0)
+   ))
