@@ -1,14 +1,14 @@
 # pure_dotfiles
 * = P U R E - D O T F I L E S =
 
-This project is solution for rising systems, or maintain ~dotfile~ configuration.
+This project provides a solution for rising systems, and/or maintain a ~dotfile~ configuration.
 
 ** key features
 
 The key features of the project include:
 
   - Dotfiles are managed with Gnus ~stow~
-  - A script ~INI~ file that takes care of:
+  - An install file that process script ~INI~ files, taking care of:
      - Installation of ~pacman~ packages
      - Installation of ~AUR~ packages
      - Enabling and starting of ~systemctl~ services
@@ -23,14 +23,14 @@ Installation:
 #+begin_src shell
   # Install the minimum requirements
   pacman -S stow
-  # Clone your dotfiles
+  # Clone your dotfile repository
   git clone https://github.com/echjansen/pure-dotfiles ~/dotfiles
   ,* Install packages, services, scripts, etc
   python install.py install/core
 #+end_src
 
 Stow works on the principle that it ~stows~ all packages in the parent folder of the ~dotfile~ folder.
-In case the ~dotfile~ folder is located in a sub folder stow, can be informed about the ~dotfile~ folder with the ~-d~ option.
+In case the ~dotfile~ folder is located in a sub folder, stow can be informed about the ~dotfile~ folder with the ~-d~ option.
 
 Use an alias for ~stow~ when the ~dotfile~ folder is located in a sub directory:
 #+begin_src shell
@@ -59,7 +59,7 @@ The user configuration files are classical ~INI~ files.
    3. [service]  - Enables and starts ~systemctl~ services
    4. [script]   - Executes ~bash~ commands lines
 
-An example of the installation script file ~INI~
+An example of a installation ~INI~ file:
 
 #+begin_src shell
   [pacman]
@@ -89,7 +89,7 @@ An example of the installation script file ~INI~
 
 An example of the output of running the installation script:
 
-#+begin_comment
+#+begin_src shell
     >> [ DONE ] Checking if AUR helper exists.
     >> [ DONE ] Refreshing pacman database cache.
     >> [ INFO ] Installing archlinux package(s):.
@@ -113,10 +113,10 @@ An example of the output of running the installation script:
     >> [ DONE ] Executing mu init --maildir=~/.mail '--my-address=user@email.com'
     >> [ DONE ] Executing mu index
     >> [ INFO ] Check ~/tmp/install.log~ for full installation output.
-#+end_comment
+#+end_src
 
 An example when there is no internet connection.
-#+begin_comment
+#+begin_src shell
     >> [ DONE ] Checking if AUR helper exists.
     >> [ FAIL ] Refreshing pacman database cache.
-#+end_comment
+#+end_src
