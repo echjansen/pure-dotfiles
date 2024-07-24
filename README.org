@@ -20,6 +20,7 @@ The key features of the project include:
      - Enabling and starting of ~systemctl~ services
      - Executing of ~bash~ commands
   - A log file is created for each run of the ~install~ script
+  - Multiple ~INI~ files can be provided to the installer.
 
 Note that by maintaining multiple ~INI~ files selective or partial installation if larger features, such as desktops, Emacs environment, etc becomes possible.
 
@@ -31,8 +32,8 @@ Installation:
   pacman -S stow
   # Clone your dotfile repository
   git clone https://github.com/echjansen/pure-dotfiles ~/dotfiles
-  ,* Install packages, services, scripts, etc
-  python install.py install/core
+  # Install packages, services, scripts, etc
+  python install.py install/core install/email
 #+end_src
 
 Stow works on the principle that it ~stows~ all packages in the parent folder of the ~dotfile~ folder.
