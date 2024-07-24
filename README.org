@@ -3,9 +3,8 @@
 
 ** What is this
 
-Pure-dotfiles is dotfile deployment tool, utilizing existing linux tools, bringing them together in a simple ~INI~ file(s).
-Pure-dotfiles takes care of installing -obviously- your dotfiles, installing the packages associated to your dotfiles, enables services and finally execute bash scripts.
-The result is a completely installed system.
+Pure-dotfiles is dotfile deployment tool, utilizing existing linux tools, bringing them together in one (or more) simple ~INI~ files.
+Pure-dotfiles takes care of installing dotfiles (using ~stow~), installing the packages associated to your dotfiles (using ~yay~), enables services (using ~systemctl~) and execute bash scripts (using ~bash~). The result is a completely installed system.
 
 ** key features
 
