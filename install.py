@@ -235,7 +235,7 @@ class Service(Cmd):
         else:
             ret_val = self.exec_log(f'$ systemctl restart {services}', f'Starting: {services}')
         return ret_val
-    
+
 def main():
 
     parser = argparse.ArgumentParser(
@@ -247,22 +247,30 @@ def main():
         ''',
         formatter_class=argparse.RawDescriptionHelpFormatter)
 
-    parser.add_argument('config', type=str,
-                        help="path to a configuration file in ~INI~ format")
+    parser.add_argument('config', type=str, nargs='+',
+                        help="path to one or more configuration files in ~INI~ format")
 
     args = parser.parse_args()
-
-    # Load the configuration file
     parser = ConfigParser(interpolation=ExtendedInterpolation())
-    parser.read_file(open(args.config))
-
-    # Check if the AUR ~yay~ command exists
     pkg = Pkg()
-    if pkg.exists("yay", "Checking if AUR helper exists."):
-        
-        # Refresh the package cache
-        pkg.refresh_cache()
-        srv = Service()
+    srv = Service()
+
+    if not pkg.exists("yay", "Checking if AUR helper exists."):
+        pkg.write_msg('Please install the AUR helper ~yay~', 3)
+        exit()
+
+    # Refresh the pacman / aur package definition cache
+    pkg.refresh_cache()
+
+    # Load the list of install file(s) - 1 is the minimum required
+    config_files = args.config
+
+    for config_file in config_files:
+        # Parse the provided install file
+        print()
+        parser.clear()
+        parser.read_file(open(config_file))
+        pkg.write_msg(f'Processing install file {config_file}:', 5)
 
         # Install features defined in the 'pacman' section
         if len(parser["pacman"])>0:pkg.write_msg("Installing archlinux package(s):.", 5)
@@ -286,8 +294,9 @@ def main():
         for feature in parser['script']:
             script = parser['script'][feature]
             pkg.exec_log(script, f'Executing {script}')
-            
-        pkg.write_msg("Check ~/tmp/install.log~ for full installation output.", 5)
+
+    print()
+    pkg.write_msg("Check ~/tmp/install.log~ for full installation output.", 5)
 
 if __name__ == "__main__":
     main()
