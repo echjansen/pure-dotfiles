@@ -1,0 +1,19 @@
+[pacman]
+editor = emacs-wayland
+email = isync msmtp
+security = gnupg pass
+
+[aur]
+email = mu
+
+[service]
+
+[script]
+# Create directories where email accounts are synchronised in
+create maildir = mkdir -p ~/.mail/user/Inbox
+# Synchronise all emails as specified in ~/.mbsyncrc
+sync maildirs = mbsync -a
+# Create mail index for ~mu~ mail indexer
+create mu  = mu init --maildir=~/.mail --my-address=user@outlook.com
+# Index the mu database
+index mu = mu index
