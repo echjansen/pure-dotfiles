@@ -1,8 +1,6 @@
 # pure_dotfiles
 * = P U R E - D O T F I L E S =
 
-This project provides a solution for rising systems, and/or maintain a ~dotfile~ configuration.
-
 ** What is this
 
 Pure-dotfiles is dotfile deployment tool, utilizing existing linux tools, bringing them together in a simple ~INI~ file(s).
