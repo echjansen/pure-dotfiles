@@ -3,6 +3,12 @@
 
 This project provides a solution for rising systems, and/or maintain a ~dotfile~ configuration.
 
+** What is this
+
+Pure-dotfiles is dotfile deployment tool, utilizing existing linux tools, bringing them together in a simple ~INI~ file(s).
+Pure-dotfiles takes care of installing -obviously- your dotfiles, installing the packages associated to your dotfiles, enables services and finally execute bash scripts.
+The result is a completely installed system.
+
 ** key features
 
 The key features of the project include:
